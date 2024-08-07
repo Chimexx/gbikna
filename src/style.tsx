@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Bg from "./assets/background.jpg";
 
 interface IText {
   fontSize?: string;
@@ -50,7 +51,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-image: url("/src/assets/background.jpg");
+  background-image: url(${Bg});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
