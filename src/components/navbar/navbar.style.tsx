@@ -1,15 +1,35 @@
 import styled from "styled-components";
 import { colors } from "../../style";
 
-export const NavBarContainer = styled.nav<{ scrolled: boolean }>`
+interface IButtonProps {
+  color?: string;
+  background?: string;
+  border?: string;
+  width?: string;
+  height?: string;
+  padding?: string;
+  fontSize?: string;
+  borderradius?: string;
+}
+
+export const NavBarContainer = styled.nav<{
+  scrolled: boolean;
+}>`
   position: fixed;
   top: 0;
+  margin: 0 auto;
   width: 100%;
+  max-width: 1440px;
   height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${({ scrolled }) => (scrolled ? "#000000e2" : "transparent")};
+  background: ${colors.primary};
+  box-shadow: ${({ scrolled }) =>
+    scrolled
+      ? "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px"
+      : "none"};
+
   transition: opacity 0.3s ease-in-out;
   z-index: 10;
   padding: 0 12rem;
@@ -23,10 +43,17 @@ export const NavBarContainer = styled.nav<{ scrolled: boolean }>`
     cursor: pointer;
     z-index: 13;
   }
+  .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 13;
+  }
 
   @media screen and (max-width: 1024px) {
     padding: 0 2rem;
-    height: 3rem;
+    height: 5rem;
 
     .menu {
       display: flex;
@@ -63,13 +90,13 @@ export const NavLinks = styled.div`
 
 export const Link = styled.a<{ current: boolean }>`
   text-decoration: none;
-  color: ${({ current }) => (current ? colors.primary : "white")};
+  color: ${({ current }) => (current ? colors.deepBlue : "white")};
   font-size: 1rem;
   transition: color 0.2s;
   font-weight: 500;
 
   &:hover {
-    color: ${colors.primary};
+    color: ${colors.deepBlue};
   }
 
   @media screen and (max-width: 768px) {
@@ -85,23 +112,28 @@ export const Link = styled.a<{ current: boolean }>`
       current ? colors.primary : "transparent"};
 
     &:hover {
-      background: ${colors.primary};
+      background: ${colors.deepBlue};
       color: #ffffff;
     }
   }
 `;
 
-export const Button = styled.button`
-  padding: 0.5rem 1rem;
-  border: 2px solid ${colors.primary};
-  background: transparent;
-  border-radius: 0.4rem;
-  color: #fff;
+export const Button = styled.button<IButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${({ width }) => width ?? "fit-content"};
+  border: ${({ border }) => border ?? "none"};
+  background: ${({ background }) => background ?? colors.secondary};
+  border-radius: ${({ borderradius }) => borderradius ?? "0.4rem"};
+  color: ${({ color }) => color ?? "white"};
+  font-size: ${({ fontSize }) => fontSize ?? "1rem"};
+  padding: ${({ padding }) => padding ?? "0.5rem 1rem"};
   cursor: pointer;
   transition: all ease-in-out 0.3s;
 
   &:hover {
-    background: #004794;
+    background: ${colors.deepBlue};
     color: #ffffff;
   }
 `;
@@ -123,22 +155,17 @@ export const Overlay = styled.div`
   }
 `;
 
-export const MobileNav = styled.div`
-  display: none;
-  width: 90%;
-  border-radius: 0.5rem;
-  position: absolute;
-  top: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
+export const MobileNav = styled.div<{ showNav: boolean }>`
+  display: ${({ showNav }) => (showNav ? "flex" : "none")};
+  width: 80%;
+  position: fixed;
+  top: 0rem;
+  right: ${({ showNav }) => (showNav ? "0" : "-300px")};
   flex-direction: column;
-  height: 90vh;
+  height: 100vh;
   z-index: 13;
+  padding-top: 3rem;
   background-color: white;
   transition: all ease-in-out 0.3s;
   overflow: hidden;
-
-  @media screen and (max-width: 1024px) {
-    display: flex;
-  }
 `;

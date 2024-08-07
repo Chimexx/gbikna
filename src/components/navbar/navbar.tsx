@@ -73,29 +73,26 @@ const Navbar = () => {
         ))}
       </NavLinks>
       <Flex alignItems="center" gap="1rem" width="fit-content">
-        <Button>Signup/Download</Button>
+        <Button width=" 8rem">Signup</Button>
         <div className="menu" onClick={() => setShowNav(!showNav)}>
-          {showNav ? (
-            <MdClose color="white" fontSize="1.8rem" />
-          ) : (
-            <IoMenuSharp color="white" fontSize="1.8rem" />
-          )}
+          <IoMenuSharp color="white" fontSize="1.8rem" />
         </div>
       </Flex>
-      {showNav && <Overlay />}
-      {showNav && (
-        <MobileNav>
-          {links.map(({ href, text }, index) => (
-            <Link
-              onClick={() => handleLink(href)}
-              current={href === currentPage}
-              key={index}
-              href={href === "#home" ? "#content" : href}>
-              {text}
-            </Link>
-          ))}
-        </MobileNav>
-      )}
+      {showNav && <Overlay onClick={() => setShowNav(false)} />}
+      <MobileNav showNav={showNav}>
+        <div className="close" onClick={() => setShowNav(false)}>
+          <MdClose color="#262626" fontSize="1.8rem" />
+        </div>
+        {links.map(({ href, text }, index) => (
+          <Link
+            onClick={() => handleLink(href)}
+            current={href === currentPage}
+            key={index}
+            href={href === "#home" ? "#content" : href}>
+            {text}
+          </Link>
+        ))}
+      </MobileNav>
     </NavBarContainer>
   );
 };
