@@ -29,7 +29,7 @@ const Hero = () => {
         setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % features.length);
         setFade(false);
       }, 1000);
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, [features.length]);

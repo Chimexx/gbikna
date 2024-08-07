@@ -58,25 +58,7 @@ export const Container = styled.div`
   #content {
     padding-top: 5rem;
     width: 100%;
-    overflow-x: hidden;
     box-sizing: border-box;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow-y: hidden;
-    background: white;
-    z-index: 1;
-  }
-
-  > * {
-    position: relative;
-    z-index: 2;
   }
 `;
 
