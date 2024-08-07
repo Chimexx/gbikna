@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { colors } from "../../style";
-import Spiral from "../../assets/spiral.svg";
 
 export const HeroContainer = styled.section<{ fade: boolean }>`
   height: 600px;
@@ -9,13 +8,23 @@ export const HeroContainer = styled.section<{ fade: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
   background-color: ${colors.primary};
-  background-image: url(${Spiral});
-  background-size: fit;
-  background-position: center;
-  background-repeat: no-repeat;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  .text {
+    z-index: 2;
+  }
+
+  .spiral {
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: 1;
+  }
 
   .header {
     font-size: 5rem;

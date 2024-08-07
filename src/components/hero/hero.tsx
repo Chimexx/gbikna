@@ -8,14 +8,15 @@ import { FiDatabase } from "react-icons/fi";
 import { Button } from "../navbar/navbar.style";
 import { useEffect, useState } from "react";
 import Shade from "../../assets/under_shade.svg";
+import Contour from "../../assets/contour.svg";
 
 const features = [
   { icon: <MdStorefront />, name: "Retail Solution for all Businesses." },
-  { icon: <MdStorefront />, name: "In-store Shopping" },
-  { icon: <SiSimpleanalytics />, name: "Free Data Analytics" },
-  { icon: <BiCheckShield />, name: "Free Offline Version" },
-  { icon: <MdOutlineReceiptLong />, name: "Online Receipts" },
-  { icon: <FiDatabase />, name: "Take Your Shop Online" },
+  { icon: <MdStorefront />, name: "In-store Shopping." },
+  { icon: <SiSimpleanalytics />, name: "Free Data Analytics." },
+  { icon: <BiCheckShield />, name: "Free Offline Version." },
+  { icon: <MdOutlineReceiptLong />, name: "Online Receipts." },
+  { icon: <FiDatabase />, name: "Take Your Shop Online." },
 ];
 
 const Hero = () => {
@@ -91,6 +92,7 @@ const Hero = () => {
           </Button>
         </Flex>
       </Flex>
+      <img className="spiral" src={Contour} alt="" />
     </HeroContainer>
   );
 };
