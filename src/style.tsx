@@ -50,7 +50,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-image: url("/src/assets/bg.jpg");
+  background-image: url("/src/assets/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
