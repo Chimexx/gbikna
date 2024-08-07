@@ -20,8 +20,8 @@ export const HeroContainer = styled.section<{ fade: boolean }>`
   .spiral {
     width: 50%;
     position: absolute;
-    top: 0;
-    left: 0;
+    left: -5rem;
+    bottom: -5rem;
     opacity: 0.3;
     z-index: 1;
   }
@@ -57,6 +57,12 @@ export const HeroContainer = styled.section<{ fade: boolean }>`
     .button {
       max-width: 12rem;
     }
+
+    .spiral {
+      width: 500px;
+      left: -5rem;
+      bottom: -10rem;
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -90,6 +96,12 @@ export const HeroContainer = styled.section<{ fade: boolean }>`
       max-width: 12rem;
       width: 12rem;
     }
+
+    .spiral {
+      width: 500px;
+      left: -5rem;
+      top: -5rem;
+    }
   }
 
   @media screen and (max-width: 430px) {
@@ -97,6 +109,12 @@ export const HeroContainer = styled.section<{ fade: boolean }>`
       width: 100%;
       max-width: 100%;
       padding: 0.5rem;
+    }
+
+    .spiral {
+      width: 300px;
+      left: -5rem;
+      top: -5rem;
     }
   }
 `;
