@@ -14,12 +14,16 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
+  max-width: 1440px;
+  flex-direction: column;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {

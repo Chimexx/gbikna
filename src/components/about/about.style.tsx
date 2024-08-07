@@ -11,6 +11,15 @@ export const AboutContainer = styled.section`
   justify-content: space-between;
   flex-direction: column;
   gap: 8rem;
+  position: relative;
+
+  .contour {
+    position: absolute;
+    left: -3rem;
+    width: 70%;
+    opacity: 0.1;
+    z-index: 0;
+  }
 
   @media screen and (max-width: 1024px) {
     padding-left: 2rem;
@@ -26,6 +35,11 @@ export const AboutContainer = styled.section`
     .group1 {
       flex-direction: column-reverse;
     }
+
+    .contour {
+      top: 12rem;
+      width: 300px;
+    }
   }
 `;
 
@@ -34,8 +48,8 @@ export const AboutEntry = styled.div`
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  background-color: white;
   justify-content: space-between;
+  z-index: 1;
   gap: 2rem;
 
   .image {

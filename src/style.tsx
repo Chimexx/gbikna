@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import Bg from "./assets/background.jpg";
+import React, { useRef, useEffect } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 
 interface IText {
   fontSize?: string;
@@ -47,22 +48,18 @@ interface IFlex {
 }
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100%;
+  width: 100%;
+  max-width: 1440px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url(${Bg});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-sizing: border-box;
-  background-attachment: fixed;
-  background-color: transparent;
-  overflow-y: scroll;
-  position: relative;
+  background-color: white;
 
   #content {
     padding-top: 5rem;
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
   &::before {
@@ -70,10 +67,10 @@ export const Container = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow-y: hidden;
-    background: rgba(0, 0, 0, 0.5);
+    background: white;
     z-index: 1;
   }
 
@@ -85,6 +82,8 @@ export const Container = styled.div`
 
 export const colors = {
   primary: "#2b86c7",
+  deepBlue: "#0d3151",
+  secondary: "#e2b734",
   text: "#363636",
   grey: "#828282",
 };
@@ -128,3 +127,35 @@ export const Flex = styled.div<IFlex>`
   font-size: ${({ fontSize }) => fontSize ?? "unset"};
   gap: ${({ gap }) => gap ?? "0px"};
 `;
+
+interface Props {
+  children: React.JSX.Element;
+  width?: "fit-content" | "100%";
+}
+export const Reveal = ({ children }: Props) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start("visible");
+    }
+  }, [isInView, mainControls]);
+
+  return (
+    <div ref={ref} style={{ position: "relative", width: "100%" }}>
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 75 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        initial="hidden"
+        animate={mainControls}
+        transition={{ duration: 0.5, delay: 0.9 }}>
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+

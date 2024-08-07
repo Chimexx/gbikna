@@ -7,6 +7,7 @@ import { IoReceipt } from "react-icons/io5";
 import { PiCube } from "react-icons/pi";
 import { BiImages } from "react-icons/bi";
 import { FiShield } from "react-icons/fi";
+import Contour from "../../assets/contour.svg";
 
 const services = [
   "Payment Applications",
@@ -101,6 +102,7 @@ const About = () => {
           })}
         </Flex>
       </AboutEntry>
+      <img className="contour" src={Contour} alt="" />
     </AboutContainer>
   );
 };

@@ -1,67 +1,93 @@
 import styled from "styled-components";
 import { colors } from "../../style";
+import Spiral from "../../assets/spiral.svg";
 
-export const HeroContainer = styled.section`
-  height: calc(100dvh - 5rem);
+export const HeroContainer = styled.section<{ fade: boolean }>`
+  height: 600px;
   width: 100%;
-  padding: 5rem 12rem 0 12rem;
+  padding: 0rem 12rem 0 12rem;
   display: flex;
   align-items: center;
-  padding-top: 5rem;
-  flex-direction: column;
+  justify-content: space-between;
   box-sizing: border-box;
-  background-color: transparent;
+  background-color: ${colors.primary};
+  background-image: url(${Spiral});
+  background-size: fit;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+
+  .header {
+    font-size: 5rem;
+  }
+  .title {
+    position: relative;
+  }
+
+  .shade {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 1rem;
+    width: 12rem;
+  }
+
+  .subText {
+    transition: opacity 1s ease, transform 1s ease;
+    opacity: ${({ fade }) => (fade ? 0 : 1)};
+    transform: ${({ fade }) => (fade ? "translateY(20px)" : "")};
+    font-size: 3rem;
+  }
 
   @media screen and (max-width: 1024px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 2rem;
-    height: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+    .subText {
+      font-size: 2rem;
+    }
+    .button {
+      max-width: 12rem;
+    }
   }
 
   @media screen and (max-width: 768px) {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-`;
+    height: fit-content;
+    min-height: 350px;
+    background-size: cover;
 
-export const FeatureWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  height: auto;
-  margin: 2rem 0;
-`;
+    .header {
+      font-size: 2rem;
+    }
+    .shade {
+      bottom: 0.3rem;
+      right: 0rem;
+      width: 5rem;
+    }
 
-export const FeatureCard = styled.div`
-  height: 10.125rem;
-  width: 10rem;
-  padding: 1.5rem;
-  flex: 1 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  box-sizing: border-box;
-  border: 1px solid #ffffff7d;
-  transition: all ease-in-out 0.3s;
-  cursor: pointer;
+    .subText {
+      font-size: 1.5rem;
+    }
 
-  svg {
-    color: ${colors.primary};
-    font-size: 2rem;
+    .buttons {
+      width: 100%;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .button {
+      max-width: 12rem;
+      width: 12rem;
+    }
   }
 
-  &:hover {
-    border: 1px solid ${colors.primary};
-  }
-
-  @media screen and (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  @media screen and (max-width: 430px) {
+    .button {
+      width: 100%;
+      max-width: 100%;
+      padding: 0.5rem;
+    }
   }
 `;
